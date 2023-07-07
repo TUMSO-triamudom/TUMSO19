@@ -1,0 +1,191 @@
+\documentclass[11pt,a4paper]{article}
+ 
+\newcommand{\tumsoTime}{09:00 น. - 12:00 น.}
+\newcommand{\tumsoRound}{1}
+ 
+\usepackage{../tumso}
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage{relsize}
+\tikzset{font=\relsize{2}}
+
+\usepackage[tikz]{mdframed}
+\usepackage{tikz}
+\usetikzlibrary{lindenmayersystems}
+\usetikzlibrary{calc}
+
+\begin{document}
+ 
+\begin{problem}{วิ่ง ๆ}{standard input}{standard output}{0.25 second}{32 megabytes}{100}
+ 
+มีคน $2$ คน $A$ และ $B$ โดยที่ $A$ กำลังวิ่งไล่ $B$ บนตารางสามเหลี่ยมขนาด $N$ โดยในเวลาหนึ่ง $A$ กับ $B$ จะยืนอยู่ที่จุดยอดหนึ่งของตารางสามเหลี่ยมนี้เท่านั้นยืนบนเส้นหรือยืนข้างนอกไม่ได้ ให้ $input$ เป็นขนาดของตารางสามเหลี่ยมและตำแหน่งเริ่มต้นของ $A$ และ $B$ เริ่มแรก $B$ จะเริ่มเดินก่อนและหลังจากนั้นก็ผลัดกันเดินทีละ $1$ หน่วยโดยบังคับว่าต้องเดิน ไม่สามารถหยุดที่เดิมได้ ให้หาว่า $A$ จะเดินน้อยสุดกี่ครั้งจึงจะรับประกันว่าเดินทันไปอยู่จุดเดียวกับ $B$ ได้ โดยกำหนดให้ $A$ และ $B$ เริ่มแรกอยู่ในจุดที่ห่างกันไม่เกิน $1$ หน่วย
+
+เช่น บนตารางสามเหลี่ยมขนาด $N = 6$ คือมีจุดอยู่ $6$ แถว แถวที่ $1$ มี $1$ คอลัมน์ แถวที่ $2$ มี $2$ คอลัมน์ ไปจนถึงแถวที่ $6$ มี $6$ คอลัมน์
+
+เริ่มต้น $A$ อยู่ที่ แถวที่ $5$ คอลัมน์ที่ $3$ และ $B$ อยู่ที่ แถวที่ $6$ คอลัมน์ที่ $3$ ดังรูป
+
+\newcommand*\rows{5}
+
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \row in {0, 1, ...,\rows} {
+            \draw ($\row*(0.5, {0.5*sqrt(3)})$) -- ($(\rows,0)+\row*(-0.5, {0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(\rows/2,{\rows/2*sqrt(3)})+\row*(0.5,{-0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(0,0)+\row*(0.5,{0.5*sqrt(3)})$);
+        }
+        
+\filldraw[red] ($(2,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+\filldraw[red] ($(2.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+
+    \end{tikzpicture}
+\end{center}
+ต่อไปคือตัวอย่างแสดงหนึ่งในวิธีการเดินที่ดีที่สุดของ $A$ ที่จะจับ $B$ ได้ โดย $B$ เริ่มเดินก่อน
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \row in {0, 1, ...,\rows} {
+            \draw ($\row*(0.5, {0.5*sqrt(3)})$) -- ($(\rows,0)+\row*(-0.5, {0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(\rows/2,{\rows/2*sqrt(3)})+\row*(0.5,{-0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(0,0)+\row*(0.5,{0.5*sqrt(3)})$);
+        }
+
+
+\draw[blue, thick,-stealth] ($(2,{0*sqrt(3)})$) -- ($(1.1,{0*sqrt(3)})$);
+\filldraw[red,opacity = 0.3] ($(2,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+\filldraw[red] ($(1,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+\filldraw[red] ($(2.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+
+    \end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \row in {0, 1, ...,\rows} {
+            \draw ($\row*(0.5, {0.5*sqrt(3)})$) -- ($(\rows,0)+\row*(-0.5, {0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(\rows/2,{\rows/2*sqrt(3)})+\row*(0.5,{-0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(0,0)+\row*(0.5,{0.5*sqrt(3)})$);
+        }
+
+
+\draw[blue, thick,-stealth] ($(2.5,{0.5*sqrt(3)})$) -- ($(1.6,{0.5*sqrt(3)})$);
+
+\filldraw[red] ($(1,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+\filldraw[red,opacity = 0.3] ($(2.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+\filldraw[red] ($(1.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+
+    \end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \row in {0, 1, ...,\rows} {
+            \draw ($\row*(0.5, {0.5*sqrt(3)})$) -- ($(\rows,0)+\row*(-0.5, {0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(\rows/2,{\rows/2*sqrt(3)})+\row*(0.5,{-0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(0,0)+\row*(0.5,{0.5*sqrt(3)})$);
+        }
+
+
+\draw[blue, thick,-stealth] ($(1,{0*sqrt(3)})$) -- ($(0.1,{0*sqrt(3)})$);
+
+\filldraw[red,opacity = 0.3] ($(1,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+\filldraw[red] ($(0,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+\filldraw[red] ($(1.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+
+    \end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \row in {0, 1, ...,\rows} {
+            \draw ($\row*(0.5, {0.5*sqrt(3)})$) -- ($(\rows,0)+\row*(-0.5, {0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(\rows/2,{\rows/2*sqrt(3)})+\row*(0.5,{-0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(0,0)+\row*(0.5,{0.5*sqrt(3)})$);
+        }
+
+
+\draw[blue, thick,-stealth] ($(1.5,{0.5*sqrt(3)})$) -- ($(0.6,{0.5*sqrt(3)})$);
+
+\filldraw[red] ($(0.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+\filldraw[red] ($(0,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+\filldraw[red,opacity = 0.3] ($(1.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+
+    \end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \row in {0, 1, ...,\rows} {
+            \draw ($\row*(0.5, {0.5*sqrt(3)})$) -- ($(\rows,0)+\row*(-0.5, {0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(\rows/2,{\rows/2*sqrt(3)})+\row*(0.5,{-0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(0,0)+\row*(0.5,{0.5*sqrt(3)})$);
+        }
+
+
+\draw[blue, thick,-stealth] ($(0,{0*sqrt(3)})$) -- ($(0.9,{0*sqrt(3)})$);
+
+\filldraw[red] ($(0.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+\filldraw[red,opacity = 0.3] ($(0,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+\filldraw[red] ($(1,{0*sqrt(3)})$) circle (2pt) node[anchor=south]{B};
+
+    \end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \row in {0, 1, ...,\rows} {
+            \draw ($\row*(0.5, {0.5*sqrt(3)})$) -- ($(\rows,0)+\row*(-0.5, {0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(\rows/2,{\rows/2*sqrt(3)})+\row*(0.5,{-0.5*sqrt(3)})$);
+            \draw ($\row*(1, 0)$) -- ($(0,0)+\row*(0.5,{0.5*sqrt(3)})$);
+        }
+
+
+\draw[blue, thick,-stealth] ($(0.5,{0.5*sqrt(3)})$) -- ($(0.95,{0.05*sqrt(3)})$);
+
+\filldraw[red,opacity = 0.3] ($(0.5,{0.5*sqrt(3)})$) circle (2pt) node[anchor=south]{A};
+\filldraw[red] ($(1,{0*sqrt(3)})$) circle (2pt) node[anchor=north]{A,B};
+
+    \end{tikzpicture}
+\end{center}
+
+เห็นว่า $A$ ใช้จำนวนการเดิน $3$ ครั้ง ก็สามารถจับ $B$ ได้และนี่ถือเป็นจำนวนครั้งที่รับประกันว่าไม่ว่า $B$ จะเดินแบบใด $A$ จะสามารถจับ $B$ ได้โดยใช้การเดินไม่เกิน $3$ ครั้ง จึงต้องตอบว่า $3$
+
+\YourWork
+
+จงแสดงจำนวนครั้งการเดินของ $A$ ที่น้อยที่เดิน ที่รับประกันว่า $A$ สามารถจับ $B$ ได้
+
+\InputFile
+ 
+บรรทัดแรก จำนวนเต็ม $N$ $(1 \leq N \leq 10\,000\,000)$ แทนขนาดของตารางสามเหลี่ยม
+
+บรรทัดต่อมา จำนวนเต็ม $4$ ตัว $X_A, Y_A, X_B, Y_B$ $(1 \leq X_A, Y_A, X_B, Y_B \leq N)$ แทนว่า $A$ อยู่ที่ตำแหน่ง แถวที่ $X_A$ คอลัมน์ที่ $Y_A$ และ $B$ อยู่ที่ตำแหน่ง แถวที่ $X_B$ คอลัมน์ที่ $Y_B$
+ 
+\OutputFile
+
+บรรทัดเดียว แสดงจำนวนครั้งการเดินของ $A$ ที่น้อยที่เดิน ที่รับประกันว่า $A$ สามารถจับ $B$ ได้
+ 
+\Scoring
+ชุดทดสอบจะถูกแบ่งเป็น 5 ชุด จะได้คะแนนในแต่ละชุดก็ต่อเมื่อโปรแกรมให้ผลลัพธ์ถูกต้องในชุดทดสอบย่อยทั้งหมด
+ 
+\begin{description}
+\item[ชุดที่ 1 (6 คะแนน)] $N \leq 15$
+\item[ชุดที่ 2 (14 คะแนน)] $N \leq 300$
+\item[ชุดที่ 3 (19 คะแนน)] $N \leq 1000$
+\item[ชุดที่ 4 (61 คะแนน)] ไม่มีเงื่อนไขเพิ่มเติม
+\end{description}
+\Examples
+
+\begin{example}
+\exmp{6
+5 3 6 3
+}{3
+}%
+\exmp{6
+1 1 1 1
+}{0
+}%
+\end{example}
+ 
+\end{problem}
+ 
+\end{document}

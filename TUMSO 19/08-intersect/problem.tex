@@ -1,0 +1,70 @@
+\documentclass[11pt,a4paper]{article}
+ 
+\newcommand{\tumsoTime}{13:00 น. - 16:00 น.}
+\newcommand{\tumsoRound}{2}
+ 
+\usepackage{../tumso}
+ \usepackage{tikz}
+ 
+\begin{document}
+ 
+\begin{problem}{ตัด ๆ กัน}{}{}{1 second}{32 megabytes}{100}
+ 
+มีส่วนของเส้นตรงบนระแบบแกนพิกัด $2$ มิติให้ $N$ เส้น โดยแต่ละเส้นให้ input เป็นจุดปลาย $2$ จุดที่มีค่าพิกัดเป็นจำนวนเต็ม ให้หาว่ามีคู่ของเส้นเหล่านี้กี่คู่ที่ตัดกัน ทั้งนี้ รับประกันว่าจุดตัดเหล่านี้มีไม่เกิน $10^6$ จุด ปลายเส้นตัดกันก็นับว่าตัดกันและไม่มีเส้น 2 เส้นใดทับซ้อนกันแม้ส่วนใดส่วนหนึ่งของเส้น เช่น จะไม่มีเส้น (0,0) - (0,5) พร้อมกับเส้น (0,3) - (0,6)
+
+เช่น $N = 3$ มีส่วนของเส้นตรง $(-3,6)$ ถึง $(2,-4)$ , $(-1,-1)$ ถึง $(2,2)$ , และ $(0,1)$ ถึง $(5,1)$ จะมีหน้าตา \textit{แบบนี้}
+
+\begin{tikzpicture}
+\draw[step=1cm,lightgray,ultra thin] (-3.9,-4.9) grid (6.9,6.9);
+\draw[gray, ultra thin] (0,-4.9) -- (0,6.9);
+\draw[gray, ultra thin] (-3.9,0) -- (6.9,0);
+\draw[blue, thick] (-3,6) -- (2,-4);
+\draw[magenta, thick] (-1,-1) -- (2,2);
+\draw[green, thick] (0,1) -- (5,1);
+\filldraw[black] (-3,6) circle (2pt) node[anchor=west]{(-3,6)};
+\filldraw[black] (2,-4) circle (2pt) node[anchor=west]{(2,-4)};
+\filldraw[black] (-1,-1) circle (2pt) node[anchor=west]{(-1,-1)};
+\filldraw[black] (2,2) circle (2pt) node[anchor=west]{(2,2)};
+\filldraw[black] (0,1) circle (2pt) node[anchor=south]{(0,1)};
+\filldraw[black] (5,1) circle (2pt) node[anchor=west]{(5,1)};
+\filldraw[red] (0,0) circle (2pt) node[anchor=west]{(0,0) จุดตัดที่ 1};
+\filldraw[red] (1,1) circle (2pt) node[anchor=west]{(1,1) จุดตัดที่ 2};
+\end{tikzpicture}
+
+เห็นว่ามีเส้นเหล่านี้ $2$ คู่ที่ตัดกัน คือจุด $(0,0)$ และ $(1,1)$ จึงต้องตอบว่า $2$
+
+\InputFile
+
+บรรทัดแรก ระบุจำนวนเต็ม $N (1 \leq N \leq 10^5)$ โดยที่ $N$ แทนจำนวนส่วนของเส้นตรง
+
+บรรทัดที่ $1+i (1 \leq i \leq N)$ แต่ละบรรทัดระบุจำนวนเต็ม $4$ ตัว ระบุ $X_1, Y_1, X_2, Y_2 (-10^8 \leq X_1, Y_1, X_2, Y_2 \leq 10^8)$ ตามลำดับโดยที่ $(X_1,Y_1)$ และ $(X_2,Y_2)$ แทนจุดปลายของส่วนของเส้นตรงเส้นที่ $i$
+
+\OutputFile
+
+$1$ บรรทัด แสดงจำนวนคู่ของเส้นเหล่านี้ที่ตัดกัน รับประกันว่าคำตอบมีค่าไม่เกิน $10^6$
+
+
+ 
+\Scoring
+ชุดทดสอบจะถูกแบ่งเป็น 4 ชุด จะได้คะแนนในแต่ละชุดก็ต่อเมื่อโปรแกรมให้ผลลัพธ์ถูกต้องในชุดทดสอบย่อยทั้งหมด
+ 
+\begin{description}
+\item[ชุดที่ 1 (6 คะแนน)] $N \leq 10$
+\item[ชุดที่ 2 (25 คะแนน)] $N \leq 1000$
+\item[ชุดที่ 3 (69 คะแนน)] ไม่มีเงื่อนไขเพิ่มเติม
+\end{description}
+
+\Examples
+
+\begin{example}
+\exmp{3
+-3 6 2 -4
+-1 -1 2 2
+0 1 5 1
+}{2
+}%
+\end{example}
+ 
+\end{problem}
+ 
+\end{document}

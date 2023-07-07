@@ -1,0 +1,59 @@
+\documentclass[11pt,a4paper]{article}
+
+\newcommand{\tumsoTime}{09:00 น. - 12:00 น.}
+\newcommand{\tumsoRound}{1}
+
+\usepackage{../tumso}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[many]{tcolorbox}
+\usepackage{mathspec}
+\usepackage{setspace}
+\usepackage{multicol}
+
+\makeatletter
+\newcommand{\tpmod}[1]{{\@displayfalse\pmod{#1}}}
+\makeatother
+
+\begin{document}
+
+\begin{problem}{มอดทำไม (No More Mod)}{standard input}{standard output}{1 seconds}{256 megabytes}{100}
+
+Jomnoiz ผู้ที่สนใจในคณิตศาสตร์เป็นพิเศษ ในวันหนึ่งเขาได้สงสัยว่า ถ้าเรามีจำนวนเต็ม $N$ และ $M$ \\มันจะมีกี่คู่อันดับ $(x, y)$ ที่ $1\leq x<y\leq N$ และทำให้ \[(M\tpmod{x})\tpmod{y}=(M\tpmod{y})\tpmod{x}\]
+
+แต่เนื่องจากเขาติดแข่ง Hackathon ทำให้เขาไม่มีเวลาว่างพอเขาจึงต้องขอให้คุณช่วยคิด
+
+\InputFile
+
+บรรทัดแรก ระบุจำนวนเต็ม $Q$ แทนจำนวนคำถาม $(1 \leq Q \leq 10^3)$
+
+บรรทัดที่ $2$ ถึง $Q + 1$ รับจำนวนเต็ม $N_i$ และ $M_i$ $(2 \leq N_i \leq 10^5, 1\leq M_i\leq 5\cdot 10^5)$
+
+\OutputFile
+มีจำนวน $Q$ บรรทัด ซึ่งบรรทัดที่ $i$ แสดงถึงคำตอบของคำถามที่ $i$
+
+\Scoring
+ชุดทดสอบจะถูกแบ่งเป็น 3 ชุด จะได้คะแนนในแต่ละชุดก็ต่อเมื่อโปรแกรมให้ผลลัพธ์ถูกต้องในชุดทดสอบย่อยทั้งหมด
+\begin{description}
+
+\item[ชุดที่ 1 (10 คะแนน)] จะมี $1\leq Q\leq 10, 2\leq N\leq 10^3, 1\leq M\leq 10^5$
+\item[ชุดที่ 2 (40 คะแนน)] จะมี $1\leq Q\leq 100, 2\leq N\leq 10^4, 1\leq M\leq10^5$
+\item[ชุดที่ 3 (50 คะแนน)] ไม่มีเงื่อนไขเพิ่มเติม 
+
+\end{description}
+
+\Examples
+
+\begin{example}
+\exmp{1
+3 5
+}{2
+}%
+\exmp{1
+3 6
+}{3
+}%
+\end{example}
+
+\end{problem}
+
+\end{document}

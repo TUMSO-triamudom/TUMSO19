@@ -1,0 +1,133 @@
+\documentclass[11pt,a4paper]{article}
+
+\newcommand{\tumsoTime}{13:00 น. - 16:00 น.}
+\newcommand{\tumsoRound}{2}
+
+\usepackage{../tumso}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[many]{tcolorbox}
+\usepackage{mathspec}
+\usepackage{setspace}
+\usepackage{multicol}
+
+\tcbset{
+    sharp corners,
+    colback = white,
+    before skip = 0.2cm,
+    after skip = 0.5cm
+}
+
+\newenvironment{bracket}[1][]{
+    \ttfamily\obeylines\obeyspaces\frenchspacing
+}{
+    \ifdefined\NoExamples\else%
+    \end{tabular}
+    \fi%
+}
+
+% \newenvironment{brackett}[1][]{
+%     \ttfamily
+% }{
+%     \ifdefined\NoExamples\else%
+%     \end{tabular}
+%     \fi%
+%     \ignorespacesafterend
+% }
+
+\newenvironment{brackett}[1]{\ttfamily}{
+    \text{#} \ignorespaces
+}
+
+\begin{document}
+
+\begin{problem}{ตามหาวงเล็บที่หายไป (Magic Bracket)}{standard input}{standard output}{1 seconds}{256 megabytes}{100}
+
+ในค่ำคืนที่เหน็บหนาว peteza ได้เข้านอนอย่างปกติ แต่พอเขาตื่นขึ้นมาในตอนเช้ากลับพบว่าโลกที่เขาอยู่นั้นเปลี่ยนไป เขาได้พบกับบางสิ่งบางอย่างที่แปลกตา นั่นก็คือ วงเล็บปริศนาที่โผล่ขึ้นมาบนท้องฟ้า
+
+\newtcolorbox{peteza}{
+    fontupper = \color{white},
+    colback = black,
+    boxrule = 0pt,
+    align = center
+}
+
+\begin{center}
+    \begin{bracket}
+        ?()?[]??(?)???([]))??
+    \end{bracket}
+\end{center}
+
+เขาสนใจมันเป็นอย่างมาก อยากรู้ว่ามันคืออะไร เขาจึงได้นั่งเขียนวงเล็บวนไปวนมา แล้วอยู่ๆเขาก็นึกสงสัยบางอย่างขึ้นว่า ถ้าให้ \begin{brackett}
+    ?
+\end{brackett}เป็นวงเล็บที่หายไป โดยสามารถแทนเป็นวงเล็บใดก็ได้จากวงเล็บ 4 แบบที่เหลือ \begin{brackett}
+    \text{(}, \text{)}, \text{[}, \text{]}
+\end{brackett}\hspace{-0.55em}จะสามารถวงเล็บที่ถูกต้อง โดยวงเล็บที่ถูกต้องมี 4 รูปแบบดังนี้
+\begin{enumerate}
+    \item \begin{brackett}
+        \text{()}
+    \end{brackett}
+    \item \begin{brackett}
+        \text{[]}
+    \end{brackett}
+    \item ประกอบขึ้นจากวงเล็บที่ถูกต้องตามรูปแบบที่ 1 หรือ 2 มาต่อกัน
+    \item อยู่ในรูปแบบของ \begin{brackett}
+        \text{(*)}
+    \end{brackett}\hspace{-0.55em}หรือ \begin{brackett}
+        \text{[*]}
+    \end{brackett}\hspace{-0.55em}โดยที่ \begin{brackett}
+        *
+    \end{brackett}\hspace{-0.55em}เป็นวงเล็บที่ถูกต้องตามรูปแบบที่ 1, 2 หรือ 3
+\end{enumerate}
+ตัวอย่างเช่น \begin{brackett}
+    \text{([]())}, \text{([()()]())}, \text{[]()[]([()()]())}
+\end{brackett}\hspace{-0.55em}เป็นต้น
+
+\InputFile
+
+บรรทัดแรก ระบุจำนวนเต็ม $N$ แทนความยาวของ String $(1 \leq N \leq 500)$
+
+บรรทัดที่ $2$ ระบุ String ขนาด $N$ หลัก ประกอบด้วย \begin{brackett}
+\text{(}, \text{)}, \text{[}, \text{]}, \text{?}
+\end{brackett}\hspace{-0.55em}โดย \begin{brackett}
+    \text{?}
+\end{brackett}\hspace{-0.55em}จะต้องเป็นวงเล็บแบบใดแบบหนึ่งจาก $4$ แบบต่อไปนี้ \begin{brackett}
+    \text{(}, \text{)}, \text{[}, \text{]}
+\end{brackett}\hspace{-0.55em}
+
+\OutputFile
+ตอบจำนวนเต็มเพียงหนึ่งตัว แทน เศษจากการหารด้วย $10^9 + 7$ ของวิธีการสร้างวงเล็บที่ถูกต้องทั้งหมด
+
+\Scoring
+ชุดทดสอบจะถูกแบ่งเป็น 5 ชุด จะได้คะแนนในแต่ละชุดก็ต่อเมื่อโปรแกรมให้ผลลัพธ์ถูกต้องในชุดทดสอบย่อยทั้งหมด
+\begin{description}
+
+\item[ชุดที่ 1 (12 คะแนน)] ประกอบด้วย \begin{brackett}
+    \text{(, )}
+\end{brackett}\hspace{-0.55em} เท่านั้น
+\item[ชุดที่ 2 (12 คะแนน)] ประกอบด้วย \begin{brackett}
+    \text{[, ]}
+\end{brackett}\hspace{-0.55em} เท่านั้น
+\item[ชุดที่ 3 (16 คะแนน)] ไม่ประกอบด้วย \begin{brackett}
+    \text{?}
+\end{brackett}
+\item[ชุดที่ 4 (24 คะแนน)] จะมี $ 1 \leq N \leq 50$
+\item[ชุดที่ 5 (36 คะแนน)] ไม่มีเงื่อนไขเพิ่มเติม 
+
+\end{description}
+
+\Examples
+
+\begin{example}
+\exmp{4
+?()?
+}{2
+}%
+\exmp{4
+(??)
+}{3
+}%
+\end{example}
+
+\end{problem}
+
+\end{document}
