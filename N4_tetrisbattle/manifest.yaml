@@ -1,0 +1,14 @@
+task_id: "tumso19_tetrisbattle"
+time_limit: 1
+memory_limit: 256
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 12.0
+    tests: 5
+  - full_score: 18.0
+    tests: 7
+  - full_score: 28.0
+    tests: 10
+  - full_score: 42.0
+    tests: 18

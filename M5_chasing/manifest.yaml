@@ -1,0 +1,14 @@
+task_id: "tumso19_chasing"
+time_limit: 0.25
+memory_limit: 32
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 6.0
+    tests: 11
+  - full_score: 14.0
+    tests: 15
+  - full_score: 19.0
+    tests: 14
+  - full_score: 61.0
+    tests: 20

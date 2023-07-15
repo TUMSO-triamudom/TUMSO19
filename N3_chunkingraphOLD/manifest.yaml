@@ -1,0 +1,12 @@
+task_id: "tumso19_chunkingraph"
+time_limit: 1
+memory_limit: 256
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 15.0
+    tests: 10
+  - full_score: 31.0
+    tests: 10
+  - full_score: 54.0
+    tests: 20

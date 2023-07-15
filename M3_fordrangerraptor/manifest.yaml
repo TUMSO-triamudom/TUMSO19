@@ -1,0 +1,14 @@
+task_id: "tumso19_fordrangerraptor"
+time_limit: 0.25
+memory_limit: 32
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 7.0
+    tests: 1
+  - full_score: 5.0
+    tests: 1
+  - full_score: 19.0
+    tests: 16
+  - full_score: 69.0
+    tests: 40

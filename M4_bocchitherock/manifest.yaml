@@ -1,0 +1,20 @@
+task_id: "tumso19_bocchitherock"
+time_limit: 1
+memory_limit: 256
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 7.0
+    tests: 4
+  - full_score: 7.0
+    tests: 4
+  - full_score: 31.0
+    tests: 20
+  - full_score: 19.0
+    tests: 7
+  - full_score: 22.0
+    tests: 8
+  - full_score: 11.0
+    tests: 7
+  - full_score: 3.0
+    tests: 6

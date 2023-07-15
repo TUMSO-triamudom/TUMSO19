@@ -1,0 +1,12 @@
+task_id: "tumso19_intersect"
+time_limit: 1
+memory_limit: 32
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 6.0
+    tests: 10
+  - full_score: 25.0
+    tests: 11
+  - full_score: 69.0
+    tests: 21

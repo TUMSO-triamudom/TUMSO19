@@ -1,0 +1,10 @@
+task_id: "tumso19_integrate"
+time_limit: 0.25
+memory_limit: 256
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 31.0
+    tests: 5
+  - full_score: 69.0
+    tests: 15

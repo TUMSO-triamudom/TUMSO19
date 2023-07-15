@@ -1,0 +1,8 @@
+task_id: "tumso19_croissantsalad"
+time_limit: 1
+memory_limit: 256
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 100.0
+    tests: 40

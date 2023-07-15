@@ -1,0 +1,12 @@
+task_id: "tumso19_nomoremod"
+time_limit: 1
+memory_limit: 256
+checker: "lcmp"
+grouper: "min"
+groups:
+  - full_score: 10.0
+    tests: 10
+  - full_score: 50.0
+    tests: 40
+  - full_score: 50.0
+    tests: 50
