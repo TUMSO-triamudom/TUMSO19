@@ -6,7 +6,7 @@ grouper: "min"
 groups:
   - full_score: 10.0
     tests: 10
-  - full_score: 50.0
+  - full_score: 40.0
     tests: 40
   - full_score: 50.0
     tests: 50
